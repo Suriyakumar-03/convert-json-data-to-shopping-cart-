@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>JSON DATA TO SHOOPING CART</title>
+</head>
+<style>
+
+body
+{
+     margin: 0px;
+     padding-top:20px;
+}
+
+
+.shop-cart-div
+{
+     display:flex;
+     justify-content: space-around;
+}
+
+span{
+     margin-left: 5px;
+}
+
+
+
+.product_name{
+     color:grey;
+}
+
+
+.size{
+     color:red;
+}
+
+.value{
+     color:blue ;
+}
+
+</style>
+<body>
+
+     <div class="container">
+          <div class="row">
+               <div class="col" align="center"></div>
+          </div>
+
+
+          <div class="row">
+               <div class="col">
+                    <div class="shop-cart-div" id="row-div">
+
+                    </div>
+                    
+               </div>
+          
+         
+               <div class="col cart">
+                   
+                    <div class="cart-div" id="selected-cart-div">
+                         CART 
+                    </div>
+
+               </div>
+
+
+
+          </div>     
+         
+     </div>    
+
+
+<script>
+
+         
+
+
+    
+  var data = [
+     {
+          "productName" : "T-Shirt",
+          "basePrice" : 500,
+          "image" : "http://placehold.it/200x200",
+          "description" : "Quality Material:Premium cotton,touch soft,breathable,comfortable,wrinkle free;you’ll enjoy this feeling when wear it.",
+          "varients" : [
+               {
+                    "type" : "Size",
+                    "values" : ["xl","xxl"]
+               },
+               {
+                    "type" : "Meterial",
+                    "values" : ["cotton","silk"]
+               },
+               {
+                    "type" : "Color",
+                    "values" : ["yellow","red"]
+               }
+          ],
+          "varientDetails" : [
+               {
+                    "size" : "xl",
+                    "meterial" : "cotton",
+                    "color" : "red",
+                    "addOnprice" : 30
+               },
+               {
+                    "size" : "xl",
+                    "meterial" : "cotton",
+                    "color" : "yellow",
+                    "addOnprice" : 40
+               },
+               {
+                    "size" : "xl",
+                    "meterial" : "silk",
+                    "color" : "red",
+                    "addOnprice" : 50
+               },
+               {
+                    "size" : "xl",
+                    "meterial" : "silk",
+                    "color" : "yellow",
+                    "addOnprice" : 60
+               },
+               {
+                    "size" : "xxl",
+                    "meterial" : "cotton",
+                    "color" : "red",
+                    "addOnprice" : 70
+               },
+               {
+                    "size" : "xxl",
+                    "meterial" : "cotton",
+                    "color" : "yellow",
+                    "addOnprice" : 80
+               },
+               {
+                    "size" : "xxl",
+                    "meterial" : "silk",
+                    "color" : "red",
+                    "addOnprice" : 90
+               },
+               {
+                    "size" : "xxl",
+                    "meterial" : "silk",
+                    "color" : "yellow",
+                    "addOnprice" : 100
+               }
+          ]
+     },
+     {
+          "productName" : "Saree",
+          "basePrice" : 5000,
+          "image" : "http://placehold.it/200x200",
+          "description" : "Quality Material:Premium cotton,touch soft,breathable,comfortable,wrinkle free;you’ll enjoy this feeling when wear it.",
+          "varients" : [
+               {
+                    "type" : "Meterial",
+                    "values" : ["cotton","silk"]
+               },
+               {
+                    "type" : "Color",
+                    "values" : ["yellow","red"]
+               }
+          ],
+          "varientDetails" : [
+               {
+                    "meterial" : "cotton",
+                    "color" : "red",
+                    "addOnprice" : 30
+               },
+               {
+                    "meterial" : "cotton",
+                    "color" : "yellow",
+                    "addOnprice" : 40
+               },
+               {
+                    "meterial" : "silk",
+                    "color" : "red",
+                    "addOnprice" : 50
+               },
+               {
+                    "meterial" : "silk",
+                    "color" : "yellow",
+                    "addOnprice" : 60
+               }
+          ]
+     }
+  ];
+
+
+     data.forEach((product,index)  =>{
+
+                    
+                    const columndiv = document.createElement("div");
+                         columndiv.setAttribute("class","card ");
+			          columndiv.style.width ="18rem"
+
+               
+                        const imagetag = document.createElement("img");
+                                imagetag.setAttribute("class","card-img-top");
+                                imagetag.src = product.image;    
+
+                            const cardbody = document.createElement("div");
+                                cardbody.setAttribute("class","card-body");
+
+                                const cardtitle = document.createElement("h4");
+                                    cardtitle.setAttribute("class","card-title");
+                                    cardtitle.innerHTML = product.productName;
+
+                                const basePrice = document.createElement("p");
+                                   basePrice.setAttribute("class","card-text");
+                                   basePrice.innerHTML = "Base price : "+product.basePrice;
+
+
+                                const description= document.createElement("p");
+                                   description.setAttribute("class","card-text");
+                                   description.innerHTML = "Description: "+product.description ;
+
+                              columndiv.appendChild(imagetag);
+                              
+                              cardbody.appendChild(cardtitle);
+
+                              cardbody.appendChild(basePrice);
+
+                              cardbody.appendChild(description);
+
+                              columndiv.appendChild(cardbody);
+
+                              const rowdiv = document.getElementById("row-div");
+                              
+                              rowdiv.appendChild(columndiv)
+                               
+
+
+                         
+                         var varients = product.varients
+
+                         div = document.createElement("div");
+                         div.id = "div-"+index;
+
+                         for(let i=0 ; i<varients.length ; i++){
+                              const selectoption = document.createElement("select");
+                                   selectoption.id = "select"+i+product.productName
+
+                              for(let j = 0;j<varients[i].values.length;j++){
+
+                               const option = document.createElement("option");
+                         
+                                   option.setAttribute("value",varients[i].values[j]); 
+                                   
+                                   option.innerHTML+=varients[i].values[j];
+
+                                   selectoption.appendChild(option);
+
+                                   div.appendChild(selectoption)
+                                   
+                                   cardbody.appendChild(div);
+
+                              }
+                         }     
+
+
+                         const button = document.createElement("input");
+
+                              button.setAttribute("type","submit");
+
+                              button.value ="Add To Cart";
+                              
+                              button.style.marginTop = "20px";
+
+                              button.className ="btn btn-primary";
+
+                              button.id ="add-cart"+index ;
+
+                              cardbody.appendChild(button);
+                             
+     
+                              const getbutton = document.getElementById("add-cart"+index)
+
+                              getbutton.addEventListener("click",addToCart);
+
+                              function addToCart(){
+
+                                   var add_to_cart=[];
+                                   var selectedCart=[];
+                                   
+                                  
+                                   var varients = product.varients;
+
+                                   for(let i=0; i<varients.length; i++){
+                                                            
+                                        for(let option of document.getElementById("select"+i+product.productName).options) {
+                                             if(option.selected)
+                                             {
+
+                                                  selectedCart.push(option.value)
+
+
+                                              }
+                                         
+                                         }
+                                             
+                                         
+                                   }    
+
+                                   for(let i=0; i<product.varientDetails.length;i++){
+                                        var arr = Object.values(product.varientDetails[i])
+                                        add_to_cart.push(arr);
+                                        // console.log( "addcart array : " +add_to_cart);
+                                        var comparecart = add_to_cart[i].slice(0,(add_to_cart[i].length-1))
+                                        // console.log(" sliced array" +comparecart);
+
+
+                                        if(JSON.stringify(selectedCart) == JSON.stringify(comparecart)) {
+
+                                            var cart = Object.entries(product.varientDetails[i]);
+                                            
+                                            
+                                       const selected_cart = document.createElement("P");
+                                        
+                                         selected_cart.id ="cart_dom"
+                                         selected_cart.innerHTML += `<span class="product_name"> ${product.productName} </span>`
+
+                                             for(const[key,value] of cart){
+                                                       if(key != "addOnprice"){
+                                                        selected_cart.innerHTML += "<span class='value'>" + "<span class='size'>"+key+"</span>" + " - " +value+" </span>";
+                                                       }
+                                             }
+
+                                             var addonprice = add_to_cart[i][add_to_cart[i].length-1]
+                                             var totalprice = addonprice + product.basePrice;
+                                             selected_cart.innerHTML += "<span>" + "<span class='price'>"+"Total prize"+"</span>" + " - " +totalprice+" </span>";
+                                             selected_cart.innerHTML +="<br>";
+
+
+                                             // console.log(totalprice);
+
+
+                                        const getcart_div = document.getElementById("selected-cart-div")
+                                             getcart_div.appendChild(selected_cart);
+                                        }
+
+
+                                   }                                                                 
+     
+                    }
+     
+     })
+
+     
+     
+
+
+
+
+</script>    
+</body>
+</html>
